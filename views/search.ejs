@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscador de Productos</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 2rem; }
+    .container { max-width: 800px; margin: auto; background-color: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1 { color: #333; }
+    form { display: flex; margin-bottom: 2rem; }
+    input[type="text"] { flex-grow: 1; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px 0 0 4px; }
+    button { padding: 0.75rem 1.5rem; background-color: #007bff; color: white; border: none; border-radius: 0 4px 4px 0; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+    .results-info { margin-bottom: 1rem; color: #555; }
+    ul { list-style-type: none; padding: 0; }
+    li { background-color: #fafafa; border: 1px solid #eee; padding: 1rem; margin-bottom: 0.5rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Buscador de Productos</h1>
+    <form action="/search" method="POST">
+      <input type="text" name="searchTerm" placeholder="Escribe un término de búsqueda..." required>
+      <button type="submit">Buscar</button>
+    </form>
+
+    <% if (typeof products !== 'undefined') { %>
+      <% if (products.length > 0) { %>
+        <p class="results-info">Mostrando <%= products.length %> resultados:</p>
+        <ul>
+          <% products.forEach(product => { %>
+            <li><strong><%= product.name %>:</strong> <%= product.description %></li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p class="results-info">No se encontraron productos que coincidan con tu búsqueda.</p>
+      <% } %>
+    <% } %>
+  </div>
+</body>
+</html>
