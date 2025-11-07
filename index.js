@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
+  console.log("test");
   const { username, password } = req.body;
   try {
     const query =
